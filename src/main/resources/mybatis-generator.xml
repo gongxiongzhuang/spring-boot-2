@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- defaultModelType="flat" 设置复合主键时不单独为主键创建实体 -->
+    <context id="mysqlTables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
+        <!-- <plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" /> -->
+
+        <!-- 扩展entity的set方法-->
+<!--        <plugin type="mybatis.generator.plugins.ExtendEntitySetter" />
+        &lt;!&ndash; 自动为entity生成swagger2文档&ndash;&gt;
+        <plugin type="mybatis.generator.plugins.MyGeneratorSwagger2Doc">
+            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+            <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
+        </plugin>-->
+
+        <!-- 生成的pojo，将implements Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!--注释-->
+        <commentGenerator>
+            <!-- 将数据库中表的字段描述信息添加到注释 -->
+            <property name="addRemarkComments" value="true"/>
+            <!-- 注释里不添加日期 -->
+            <property name="suppressDate" value="true" />
+            <!--<property name="suppressAllComments" value="true" /> 会生成重复的xml bean-->
+        </commentGenerator>
+
+        <!-- 数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://120.77.241.43:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
+                        userId="root" password="uAiqwVwjJ8-i">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 指定JDBC类型和Java类型如何转换 -->
+        <javaTypeResolver>
+            <!-- 该属性可以控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal,默认值为false，一般不需要配置。 -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->
+        <javaModelGenerator
+                targetPackage="com.springboot.domain" targetProject="src/main/java">
+            <!-- 如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false -->
+            <property name="enableSubPackages" value="true" />
+            <!-- 是否对数据库查询结果进行trim操作，如果设置为true就会生成类似这样public void setUsername(String username) {this.username = username == null ? null : username.trim();}的setter方法。默认值为false -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--对应的xml mapper文件 -->
+        <sqlMapGenerator targetProject="src/main/resources" targetPackage="mappers" >
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 对应的dao接口 -->
+        <javaClientGenerator targetProject="src/main/java" targetPackage="com.springboot.dao" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名（不生成Example（帮助类）类） -->
+        <!-- <table tableName="sys_department"
+            domainObjectName="SysDepartment" enableCountByExample="false"
+            enableSelectByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false">
+        </table> -->
+        <!-- <table tableName="t_test"
+            domainObjectName="Test" enableCountByExample="true"
+            enableSelectByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true">
+        </table> -->
+        <!-- 生成所有表 -->
+        <!--
+             enableCountByExample  生成根据条件统计的dao和mapper映射
+             enableSelectByExample 生成根据条件查询的dao和mapper映射
+             enableUpdateByExample 生成根据条件修改的dao和mapper映射
+             enableDeleteByExample 生成根据条件删除的dao和mapper映射
+         -->
+        <table tableName="%"
+               enableCountByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false">
+        </table>
+
+    </context>
+
+</generatorConfiguration>
