@@ -1,4 +1,4 @@
-package com.springboot;
+package com.springboot.config;
 
 import com.springboot.comm.filter.RegisterFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Description TODO
+ * @Description 自定义请求过滤器
  * @Author gongxz
  * @Date 2019/2/14 15:27
  **/

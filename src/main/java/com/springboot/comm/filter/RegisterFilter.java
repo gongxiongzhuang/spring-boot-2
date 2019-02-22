@@ -30,12 +30,13 @@ public class RegisterFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         StringBuffer requestUrl = httpServletRequest.getRequestURL();
-        if (containsKey(requestUrl.toString()) || containsSuffix(requestUrl.toString())) {
+        /*if (containsKey(requestUrl.toString()) || containsSuffix(requestUrl.toString())) {
             logger.debug("跳过拦截的url, " + httpServletRequest.getRequestURI());
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             httpServletResponse.sendRedirect("/requestError");
-        }
+        }*/
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     private boolean containsKey(String url) {

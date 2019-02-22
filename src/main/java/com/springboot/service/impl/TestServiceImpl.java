@@ -7,6 +7,8 @@ import com.springboot.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description TODO
  * @Author gongxz
@@ -38,5 +40,10 @@ public class TestServiceImpl implements TestService {
         criteria.andNameEqualTo(name);
         criteria.andUuidEqualTo(uuid);
         return userDao.selectByExample(userExample).get(0);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDao.selectByExample(null);
     }
 }
