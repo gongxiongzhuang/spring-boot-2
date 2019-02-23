@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig implements WebMvcConfigurer {
+public class SwaggerConfig {
 
     @Value("${swagger.version}") private String version;
     @Value("${swagger.basePackage}") private String basePackage;
@@ -42,9 +42,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
         .modelRef(new ModelRef("string"));//todo
         operationParameters.add(parameter.build());*/
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
                 //.groupName("api项目")//todo
-                .genericModelSubstitutes(DeferredResult.class)//todo
+                .apiInfo(apiInfo())
+                //.genericModelSubstitutes(DeferredResult.class)//todo
                 .useDefaultResponseMessages(false)//不使用默认的响应信息描述
                 .globalResponseMessage(RequestMethod.GET,customerResponseMessage())//自定义全局的响应信息描述 获取
                 .globalResponseMessage(RequestMethod.POST,customerResponseMessage())//自定义全局的响应信息描述 在服务器新建一个资源
@@ -52,7 +52,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .globalResponseMessage(RequestMethod.PUT,customerResponseMessage())//自定义全局的响应信息描述 在服务器更新资源（客户端提供完整资源数据）。
                 .globalResponseMessage(RequestMethod.PATCH,customerResponseMessage())//自定义全局的响应信息描述 在服务器更新资源（客户端提供需要修改的资源数据）
                 //.globalOperationParameters(operationParameters)//全局的参数说明，作用在所有方法上。
-                .forCodeGeneration(true)//todo
+                //.forCodeGeneration(true)//todo
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(basePackage))//需要显示的接口路径
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))//这里采用包含注解的方式来确定要显示的接口
@@ -67,18 +67,6 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .termsOfServiceUrl("http://laog.net")
                 .version(version)//版本号
                 .build();
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/");
-
-        registry.addResourceHandler("swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/");
-
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**

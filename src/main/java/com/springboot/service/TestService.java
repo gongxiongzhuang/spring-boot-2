@@ -15,7 +15,7 @@ public interface TestService {
 
     User findById(Long id);
 
-    User findByNameAndUuid(String name,String uuid);
+    User findByNameAndUuid(String name, String uuid);
 
     List<User> findAll();
 }

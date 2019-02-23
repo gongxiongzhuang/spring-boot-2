@@ -10,24 +10,24 @@
         <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
         <!-- <plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" /> -->
 
-        <!-- 扩展entity的set方法-->
-<!--        <plugin type="mybatis.generator.plugins.ExtendEntitySetter" />
-        &lt;!&ndash; 自动为entity生成swagger2文档&ndash;&gt;
-        <plugin type="mybatis.generator.plugins.MyGeneratorSwagger2Doc">
+        <!-- 自动为entity生成swagger2文档-->
+        <plugin type="mybatis.generator.plugins.GeneratorSwagger2Doc">
             <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
             <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
-        </plugin>-->
+        </plugin>
+
+        <!-- 扩展entity的set方法-->
+        <plugin type="mybatis.generator.plugins.ExtendEntitySetter" />
 
         <!-- 生成的pojo，将implements Serializable -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <!--注释-->
         <commentGenerator>
-            <!-- 将数据库中表的字段描述信息添加到注释 -->
-            <property name="addRemarkComments" value="true"/>
             <!-- 注释里不添加日期 -->
             <property name="suppressDate" value="true" />
-            <!--<property name="suppressAllComments" value="true" /> 会生成重复的xml bean-->
+            <!--会生成重复的xml bean-->
+            <!--<property name="suppressAllComments" value="true" />-->
         </commentGenerator>
 
         <!-- 数据库链接URL，用户名、密码 -->

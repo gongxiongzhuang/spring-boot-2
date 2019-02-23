@@ -26,7 +26,7 @@ public class PageList<T> implements Serializable {
     @ApiModelProperty(value = "总记录数",name = "totalCount",dataType = "long")
     private long totalCount = 10;
 
-    @ApiModelProperty(value = "分页记录",name = "list",dataType = "List")
+    @ApiModelProperty(value = "分页数据",name = "list",dataType = "List")
     private List<T> list;
 
     public PageList() {

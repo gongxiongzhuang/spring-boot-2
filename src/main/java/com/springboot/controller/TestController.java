@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import com.springboot.controller.base.BaseController;
 import com.springboot.domain.User;
 import com.springboot.service.TestService;
 import com.springboot.vo.base.PageList;
@@ -11,8 +12,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @Description 测试类
  * @Author gongxz
@@ -21,20 +20,22 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @Api(tags = "用户信息")
 @RequestMapping(value = "/test")
-public class TestController {
+public class TestController extends BaseController {
 
     @Autowired
     private TestService testService;
 
     //,,httpMethod = "path"
-    @ApiOperation(value = "根据姓名和uuid获取用户信息", notes = "这是notes")
+    @ApiOperation(value = "根据姓名和uuid获取用户信息", notes = "这是notes" ,httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "path",name = "name",value = "姓名",dataType = "String",required = true,defaultValue = "龚雄壮"),
-            @ApiImplicitParam(paramType = "query",name = "uuid",value = "uuid",dataType = "String",required = true,defaultValue = "30f54356304811e9a2370235d2b38928")
+            //@ApiImplicitParam(paramType = "path",name = "name",value = "姓名",dataType = "String",required = true,defaultValue = "龚雄壮"),
+            //@ApiImplicitParam(paramType = "body",name = "user.uuid",value = "uuid",dataType = "User",required = true)//defaultValue = "30f54356304811e9a2370235d2b38928"
     })
-    @RequestMapping(value = "/user/name/{name}",method = RequestMethod.GET)
-    public User findByNameAndUuid(@PathVariable("name") String name, HttpServletRequest request) {
-        String uuid = request.getParameter("uuid");
+    @RequestMapping(value = "/user/name/uuid",method = RequestMethod.POST)
+    public User findByNameAndUuid(@RequestBody User user) {
+        String uuid = user.getUuid();
+        String name = user.getName();
+        //String uuid = request.getParameter("uuid");
         return testService.findByNameAndUuid(name,uuid);
     }
 
