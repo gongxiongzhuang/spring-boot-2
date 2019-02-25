@@ -10,28 +10,42 @@
         <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
         <!-- <plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" /> -->
 
-        <!-- 自动为entity生成swagger2文档-->
-        <plugin type="mybatis.generator.plugins.GeneratorSwagger2Doc">
-            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+        <!-- 扩展entity的set方法-->
+        <!--<plugin type="mybatis.generator.plugins.ExtendEntitySetter" />
+
+        &lt;!&ndash; 自动为entity生成swagger2文档&ndash;&gt;
+        <plugin type="com.springboot.MybatisGenerator         <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
             <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
         </plugin>
 
-        <!-- 扩展entity的set方法-->
-        <plugin type="mybatis.generator.plugins.ExtendEntitySetter" />
-
-        <!-- 生成的pojo，将implements Serializable -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        &lt;!&ndash; 生成的pojo，将implements Serializable &ndash;&gt;
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
 
         <!--注释-->
-        <commentGenerator>
-            <!-- 注释里不添加日期 -->
+        <!--<commentGenerator>
+            &lt;!&ndash; 注释里不添加日期 &ndash;&gt;
             <property name="suppressDate" value="true" />
-            <!--会生成重复的xml bean-->
-            <!--<property name="suppressAllComments" value="true" />-->
+            &lt;!&ndash;会生成重复的xml bean&ndash;&gt;
+            &lt;!&ndash;<property name="suppressAllComments" value="true" />&ndash;&gt;
+        </commentGenerator>-->
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 扩展entity的set方法-->
+        <!--<plugin type="mybatis.generator.plugins.ExtendEntitySetter" />-->
+        <!-- 自动为entity生成swagger2文档-->
+        <plugin type="com.springboot.MybatisGenerator">
+            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+            <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
+        </plugin>
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
         </commentGenerator>
 
         <!-- 数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://120.77.241.43:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
                         userId="root" password="uAiqwVwjJ8-i">
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -82,10 +96,9 @@
              enableDeleteByExample 生成根据条件删除的dao和mapper映射
          -->
         <table tableName="%"
-               enableCountByExample="false"
-               enableSelectByExample="true"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false">
+               enableSelectByExample="true" enableDeleteByExample="true"
+               enableCountByExample="true" enableUpdateByExample="true"
+               selectByExampleQueryId="true">
         </table>
 
     </context>

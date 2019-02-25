@@ -1,14 +1,14 @@
 package com.springboot.service;
 
 import com.springboot.domain.User;
-
-import java.util.List;
+import com.springboot.vo.base.PageList;
 
 /**
  * @Description TODO
  * @Author gongxz
  * @Date 2019/2/14 15:20
  **/
+
 public interface TestService {
 
     User findByName(String name);
@@ -17,5 +17,5 @@ public interface TestService {
 
     User findByNameAndUuid(String name, String uuid);
 
-    List<User> findAll();
+    PageList<User> findAll();
 }

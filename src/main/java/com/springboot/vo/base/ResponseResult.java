@@ -1,8 +1,11 @@
 package com.springboot.vo.base;
 
+import com.alibaba.fastjson.JSON;
 import com.springboot.comm.Enum.CodeMessage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @Description 返回信息
@@ -12,6 +15,8 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "ResponseResult",description = "返回信息")
 public class ResponseResult<T> {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @ApiModelProperty(value = "返回编码",dataType = "String",name = "rspCode")
     private String rspCode ;
     @ApiModelProperty(value = "返回描述",dataType = "String",name = "rspMsg")
@@ -20,7 +25,21 @@ public class ResponseResult<T> {
     private T data;
 
     public ResponseResult() {
-        this(CodeMessage.Success.getCode(),CodeMessage.Success.getMsg());
+        this(CodeMessage.Success);
+    }
+
+    public ResponseResult(CodeMessage codeMessage) {
+        this(codeMessage.getMsg(),codeMessage.getCode());
+    }
+
+    public ResponseResult(T data) {
+        this(CodeMessage.Success);
+        this.data = data;
+    }
+
+    public ResponseResult(CodeMessage codeMessage, T data) {
+        this(codeMessage);
+        this.data = data;
     }
 
     public ResponseResult(String rspCode, String rspMsg) {
@@ -31,10 +50,6 @@ public class ResponseResult<T> {
     public ResponseResult(String rspCode, String rspMsg, T data) {
         this.rspCode = rspCode;
         this.rspMsg = rspMsg;
-        this.data = data;
-    }
-
-    public ResponseResult(T data) {
         this.data = data;
     }
 

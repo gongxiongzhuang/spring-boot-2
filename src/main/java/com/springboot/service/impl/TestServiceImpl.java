@@ -1,9 +1,12 @@
 package com.springboot.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.springboot.dao.UserMapper;
 import com.springboot.domain.User;
 import com.springboot.domain.UserExample;
 import com.springboot.service.TestService;
+import com.springboot.vo.base.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import java.util.List;
  * @Author gongxz
  * @Date 2019/2/14 15:20
  **/
+
 @Service
 public class TestServiceImpl implements TestService {
 
@@ -25,12 +29,14 @@ public class TestServiceImpl implements TestService {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andNameEqualTo(name);
+        //return null;
         return userDao.selectByExample(userExample).get(0);
     }
 
     @Override
     public User findById(Long id) {
-        return userDao.selectByPrimaryKey(id);
+        return null;
+        //return userDao.selectByPrimaryKey(id);
     }
 
     @Override
@@ -39,11 +45,15 @@ public class TestServiceImpl implements TestService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andNameEqualTo(name);
         criteria.andUuidEqualTo(uuid);
+        //return null;
         return userDao.selectByExample(userExample).get(0);
     }
 
     @Override
-    public List<User> findAll() {
-        return userDao.selectByExample(null);
+    public PageList<User> findAll() {
+        //return null;
+        PageHelper.startPage(10, 8);
+        List<User> list = userDao.selectByExample(null);
+        return new PageList<>(list);
     }
 }

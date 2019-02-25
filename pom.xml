@@ -25,6 +25,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- 暂未用到 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -36,6 +41,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- 暂未用到 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+
         <!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -43,6 +55,13 @@
 			<version>${mybatis-spring-boot}</version>
 		</dependency>
 		<!-- mybatis -->
+
+		<!-- mybatis 分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.10</version>
+		</dependency>
 
 		<!-- mysql 连接驱动 -->
 		<dependency>
@@ -52,19 +71,13 @@
 		</dependency>
 		<!-- mysql 连接驱动 -->
 
-		<!-- mybatis-generator-core 自动添加swagger实体类注解 -->
-		<!--<dependency>
+		<!-- generator-core 自动添加swagger实体类注解 -->
+		<dependency>
 			<groupId>org.mybatis.generator</groupId>
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>1.3.7</version>
-		</dependency>-->
-		<!-- mybatis-generator-core 自动添加swagger实体类注解 -->
-
-		<!--<dependency>
-			<groupId>com.github.misterchangray.mybatis.generator.plugins</groupId>
-			<artifactId>myBatisGeneratorPlugins</artifactId>
-			<version>1.2</version>
-		</dependency>-->
+		</dependency>
+		<!-- generator-core 自动添加swagger实体类注解 -->
 
 		<!-- swagger 2 -->
 		<dependency>
@@ -77,12 +90,19 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger2}</version>
 		</dependency>
+		<!--swagger ui 美化包  -->
 		<dependency>
-			<groupId>com.github.caspar-chen</groupId>
-			<artifactId>swagger-ui-layer</artifactId>
-			<version>1.1.3</version>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>1.9.0</version>
 		</dependency>
 		<!-- swagger 2 -->
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.55</version>
+		</dependency>
 
 		<!-- 项目监控 -->
 		<dependency>
@@ -124,13 +144,13 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- mybatis 自动生成插件 -->
-			<plugin>
-				<!-- mybatis-generator maven 插件 -->
+			<!--<plugin>
+				&lt;!&ndash; generator maven 插件 &ndash;&gt;
 				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<artifactId>generator-maven-plugin</artifactId>
 				<version>1.3.7</version>
 				<dependencies>
-					<!-- 连接数据库驱动，插件里面需要单独配置 -->
+					&lt;!&ndash; 连接数据库驱动，插件里面需要单独配置 &ndash;&gt;
 					<dependency>
 						<groupId>mysql</groupId>
 						<artifactId>mysql-connector-java</artifactId>
@@ -138,10 +158,10 @@
 					</dependency>
 					<dependency>
 						<groupId>org.mybatis.generator</groupId>
-						<artifactId>mybatis-generator-core</artifactId>
+						<artifactId>generator-core</artifactId>
 						<version>1.3.7</version>
 					</dependency>
-					<!-- mybatis-generator 自动在实体类添加swagger注解 -->
+					&lt;!&ndash; generator 自动在实体类添加swagger注解 &ndash;&gt;
 					<dependency>
 						<groupId>com.github.misterchangray.mybatis.generator.plugins</groupId>
 						<artifactId>myBatisGeneratorPlugins</artifactId>
@@ -158,14 +178,14 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!-- 配置generatorConfig的位置,注意：若不配置generatorConfig的位置，会默认位置为src/main/resources下。 -->
-					<configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>
-					<!--允许移动生成的文件 -->
+					&lt;!&ndash; 配置generatorConfig的位置,注意：若不配置generatorConfig的位置，会默认位置为src/main/resources下。 &ndash;&gt;
+					<configurationFile>src/main/resources/generator.xml</configurationFile>
+					&lt;!&ndash;允许移动生成的文件 &ndash;&gt;
 					<verbose>true</verbose>
-					<!-- 是否覆盖 -->
+					&lt;!&ndash; 是否覆盖 &ndash;&gt;
 					<overwrite>true</overwrite>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 

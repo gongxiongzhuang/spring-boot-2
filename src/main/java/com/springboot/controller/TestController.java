@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.springboot.controller.base.BaseController;
 import com.springboot.domain.User;
 import com.springboot.service.TestService;
@@ -12,11 +13,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 /**
  * @Description 测试类
  * @Author gongxz
  * @Date 2019/2/14 15:04
  **/
+
 @RestController
 @Api(tags = "用户信息")
 @RequestMapping(value = "/test")
@@ -51,8 +56,7 @@ public class TestController extends BaseController {
     @ApiOperation(value = "获得所有用户信息")
     @RequestMapping(value = "/users",method = RequestMethod.GET)
     public ResponseResult<PageList<User>> findAll() {
-        PageList<User> pageListData = new PageList<>(testService.findAll());
-        return new ResponseResult<>(pageListData);
+        return new ResponseResult<>(testService.findAll());
     }
 
     @RequestMapping("/user/id/{id}")
