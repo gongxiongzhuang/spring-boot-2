@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by DingYS on 2017/2/20.
+ * 全局的异常拦截
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

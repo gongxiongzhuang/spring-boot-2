@@ -181,7 +181,7 @@
     <springProfile name="dev,sit">
         <!--配置mybatis sql 日志-->
         <logger name="com.springboot.dao" level="DEBUG"/>
-        <logger name="org.springframework.web" level="DEBUG"/>
+        <logger name="org.springframework.web" level="INFO"/>
         <root level="${logLevel}">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="FILE" />

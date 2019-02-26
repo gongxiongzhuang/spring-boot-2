@@ -51,9 +51,16 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public PageList<User> findAll() {
-        //return null;
-        PageHelper.startPage(10, 8);
+        PageHelper.startPage(2, 8);
         List<User> list = userDao.selectByExample(null);
+        //自定义分页插件
         return new PageList<>(list);
+    }
+
+    public PageInfo<User> find() {
+        PageHelper.startPage(2, 8);
+        List<User> list = userDao.selectByExample(null);
+        //自定义分页插件
+        return new PageInfo<>(list);
     }
 }

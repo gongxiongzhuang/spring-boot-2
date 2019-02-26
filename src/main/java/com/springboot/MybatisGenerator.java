@@ -25,6 +25,15 @@ public class MybatisGenerator extends PluginAdapter {
 		return true;
 	}
 
+	/**
+	 * 实体类添加swagger注解
+	 * @param field
+	 * @param topLevelClass
+	 * @param introspectedColumn
+	 * @param introspectedTable
+	 * @param modelClassType
+	 * @return
+	 */
 	public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
 			IntrospectedTable introspectedTable, Plugin.ModelClassType modelClassType) {
 		String classAnnotation = "@ApiModel(value=\"" + topLevelClass.getType().getShortName() + "\")";
