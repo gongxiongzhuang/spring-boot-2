@@ -63,7 +63,7 @@ public class MybatisGenerator extends PluginAdapter {
 	@Override
 	public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 		FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("BaseDao<" + introspectedTable.getBaseRecordType() + ","+introspectedTable.getBaseRecordType()+"Example>");
-		FullyQualifiedJavaType imp = new FullyQualifiedJavaType("com.springboot.dao.base.BaseDao");
+		FullyQualifiedJavaType imp = new FullyQualifiedJavaType("com.springboot.comm.base.BaseDao");
 		interfaze.addSuperInterface(fqjt);// 添加 extends BaseDao<User>
 		interfaze.addImportedType(imp);// 添加import common.BaseDao;
 		interfaze.getMethods().clear();

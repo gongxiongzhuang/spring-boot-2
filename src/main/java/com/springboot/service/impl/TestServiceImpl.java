@@ -6,7 +6,7 @@ import com.springboot.dao.UserMapper;
 import com.springboot.domain.User;
 import com.springboot.domain.UserExample;
 import com.springboot.service.TestService;
-import com.springboot.vo.base.PageList;
+import com.springboot.comm.page.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

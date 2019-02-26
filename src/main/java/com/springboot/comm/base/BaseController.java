@@ -1,4 +1,4 @@
-package com.springboot.controller.base;
+package com.springboot.comm.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,4 +12,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BaseController {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
 }

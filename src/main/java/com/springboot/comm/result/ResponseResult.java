@@ -1,6 +1,5 @@
-package com.springboot.vo.base;
+package com.springboot.comm.result;
 
-import com.alibaba.fastjson.JSON;
 import com.springboot.comm.Enum.CodeMessage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

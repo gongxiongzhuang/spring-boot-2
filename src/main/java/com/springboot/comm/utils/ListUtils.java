@@ -1,4 +1,4 @@
-package com.springboot.utils;
+package com.springboot.comm.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

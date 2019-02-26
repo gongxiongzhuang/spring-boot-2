@@ -1,4 +1,4 @@
-package com.springboot.vo.base;
+package com.springboot.comm.page;
 
 import com.github.pagehelper.Page;
 import io.swagger.annotations.ApiModel;

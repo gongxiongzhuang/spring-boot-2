@@ -1,7 +1,7 @@
 package com.springboot.service;
 
 import com.springboot.domain.User;
-import com.springboot.vo.base.PageList;
+import com.springboot.comm.page.PageList;
 
 /**
  * @Description TODO

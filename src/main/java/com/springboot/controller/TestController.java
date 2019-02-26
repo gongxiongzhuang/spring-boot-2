@@ -1,19 +1,16 @@
 package com.springboot.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.springboot.controller.base.BaseController;
+import com.springboot.comm.base.BaseController;
 import com.springboot.domain.User;
 import com.springboot.service.TestService;
-import com.springboot.vo.base.PageList;
-import com.springboot.vo.base.ResponseResult;
+import com.springboot.comm.page.PageList;
+import com.springboot.comm.result.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 /**

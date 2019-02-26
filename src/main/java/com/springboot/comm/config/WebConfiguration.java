@@ -1,4 +1,4 @@
-package com.springboot.config;
+package com.springboot.comm.config;
 
 import com.springboot.comm.filter.RegisterFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

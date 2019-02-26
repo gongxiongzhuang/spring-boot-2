@@ -1,4 +1,4 @@
-package com.springboot.dao.base;
+package com.springboot.comm.base;
 
 import org.apache.ibatis.annotations.Param;
 
