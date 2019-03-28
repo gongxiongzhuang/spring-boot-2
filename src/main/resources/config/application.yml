@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: @profileActive@
+
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+
+#mybatis 分页
+pagehelper:
+  supportMethodsArguments: true
+  reasonable: true
+  helperDialect: mysql
+  params: count=countSql
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+#日志配置
+logging:
+  config: classpath:logback/logback-spring.xml
+
+swagger:
+  basePackage: com.springboot.controller
+  version: 1.0

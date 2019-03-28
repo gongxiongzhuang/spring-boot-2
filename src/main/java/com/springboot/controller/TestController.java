@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * @Description 测试类
@@ -54,6 +56,12 @@ public class TestController extends BaseController {
     @RequestMapping(value = "/users",method = RequestMethod.GET)
     public ResponseResult<PageList<User>> findAll() {
         return new ResponseResult<>(testService.findAll());
+    }
+
+    @ApiOperation(value = "获得所有用户信息")
+    @RequestMapping(value = "/userList",method = RequestMethod.GET)
+    public ResponseResult<List<User>> userList() {
+        return new ResponseResult<>(testService.findList());
     }
 
     @RequestMapping("/user/id/{id}")

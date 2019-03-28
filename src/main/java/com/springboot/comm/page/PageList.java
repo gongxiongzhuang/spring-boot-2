@@ -30,6 +30,9 @@ public class PageList<T> implements Serializable {
     @ApiModelProperty(value = "结果集",dataType = "List",name = "list")
     private List<T> list;
 
+    public PageList() {
+    }
+
     //@ApiModelProperty(value = "前一页",dataType = "int",name = "prePage")
     //private int prePage;
     //@ApiModelProperty(value = "下一页",dataType = "int",name = "nextPage")

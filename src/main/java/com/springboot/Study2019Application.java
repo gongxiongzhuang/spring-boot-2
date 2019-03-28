@@ -5,12 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * spring boot 启动类
  */
 @SpringBootApplication
 @MapperScan("com.springboot.dao")// mapper 接口类扫描包配置
+@EnableCaching //开启缓存
 public class Study2019Application extends SpringBootServletInitializer {
 
     /**

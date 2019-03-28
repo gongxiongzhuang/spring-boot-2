@@ -3,6 +3,8 @@ package com.springboot.service;
 import com.springboot.domain.User;
 import com.springboot.comm.page.PageList;
 
+import java.util.List;
+
 /**
  * @Description TODO
  * @Author gongxz
@@ -18,4 +20,6 @@ public interface TestService {
     User findByNameAndUuid(String name, String uuid);
 
     PageList<User> findAll();
+
+    List<User> findList();
 }
