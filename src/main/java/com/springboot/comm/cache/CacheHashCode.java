@@ -5,7 +5,7 @@ import com.springboot.comm.utils.ArrayUtil;
 import java.util.Arrays;
 
 /**
- * @Description TODO
+ * @Description 缓存hashcode工具
  * @Date 2019/3/28 16:35
  * @Created by gongxz
  */
