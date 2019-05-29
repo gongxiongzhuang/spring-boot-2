@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>信用卡分期</title>
+  <link rel="stylesheet" href="./iconfonts/iconfont.css">
+  <style>
+    html {
+      font-size: 26.66666666667vw;
+      height: 100%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100%;
+      font-size: 0.16rem;
+      color: #333;
+    }
+
+    #wrap {
+      padding-top: 0.71rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    #wrap.hide {
+      display: none;
+    }
+
+    #wrap .iconfont {
+      margin-left: 0.3rem;
+      font-size: 1rem;
+      color: #fc9526;
+      margin-bottom: 0.3rem;
+    }
+
+    #wrap .result-title {
+      font-size: 0.18rem;
+      margin-bottom: 0.17rem;
+    }
+
+    #wrap .tips {
+      display: none;
+      font-size: 0.14rem;
+      color: #888;
+    }
+
+    #wrap .action {
+      width: 3.43rem;
+      height: 0.47rem;
+      line-height: 0.47rem;
+      border-radius: 0.05rem;
+      border: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #wrap .action.blue {
+      margin-top: 0.62rem;
+      color: #fff;
+      background-color: #4CA7EE;
+      margin-bottom: 0.2rem;
+    }
+
+    #wrap .action.gray {
+      display: none;
+      color: #202741;
+      background-color: #F2F2F2;
+      border: 1px solid #ccc;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="wrap" class="hide">
+    <div class="iconfont icon-zhifuchenggong"></div>
+    <div class="result-title">支付失败</div>
+    <div class="tips">3s后自动跳回订单详情页...</div>
+    <button class="action blue">更换信用卡</button>
+    <button class="action gray">选择其他资方</button>
+  </div>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-qu2J8HSjv8EaYlbzBdbVeJncuCmfBqnZ4h3UIBZ9WTZ/5Wrqt0/9hofL0046NCkc"
+    src="https://lib.baomitu.com/zepto/1.2.0/zepto.min.js"></script>
+  <script>
+    $(function () {
+      var searchString = window.location.search
+      var orderSerialNo = searchString.slice(searchString.indexOf('=') + 1)
+      $.ajax({
+        url: 'https://instalment.udenauto.com/api/finance/yop/queryOrder?orderSerialNo=' + orderSerialNo,
+        success: function (res) {
+          if (res.code !== '000000') {
+            $('.result-title').text('支付失败')
+            $('.action.blue').text('更换信用卡')
+            // $('.action.gray').show()
+            $('#wrap').removeClass('hide')
+            $('.action.blue').off().tap(function () {
+              wx.miniProgram.navigateBack({
+                delta: 1
+              })
+            })
+            return
+          } else {
+            $('.result-title').text('支付成功')
+            $('.tips').show()
+            $('.action.blue').text('返回订单详情')
+            // $('.action.gray').off().hide()
+            $('#wrap').removeClass('hide')
+            $('.action.blue').off().tap(function () {
+              wx.miniProgram.redirectTo({
+                url: '/pages/orderDetail/orderDetail?orderCode=' + res.data.orderCode
+              })
+            })
+            setTimeout(function () {
+              wx.miniProgram.redirectTo({
+                url: '/pages/orderDetail/orderDetail?orderCode=' + res.data.orderCode
+              })
+            }, 3000)
+          }
+        },
+        error: function (err) {
+          $('.result-title').text('支付失败')
+          $('.action.blue').text('更换信用卡')
+          // $('.action.gray').show()
+          $('#wrap').removeClass('hide')
+          $('.action.blue').off().tap(function () {
+            wx.miniProgram.navigateBack({
+              delta: 1
+            })
+          })
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

@@ -25,3 +25,19 @@ logging:
 swagger:
   basePackage: com.springboot.controller
   version: 1.0
+
+my:
+  sign: 测试
+  test: asfasfasf
+
+# spring 线程池
+task:
+  pool:
+    #核心线程池
+    corePoolSize: 500
+    #最大线程池
+    maxPoolSize: 1000
+    #活跃时间
+    keepAliveSeconds: 300
+    #队列容量
+    queueCapacity: 50

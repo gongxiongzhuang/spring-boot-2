@@ -21,5 +21,11 @@ public interface TestService {
 
     PageList<User> findAll();
 
+    PageList<User> putFindAll();
+
     List<User> findList();
+
+    PageList<User> updateUsers();
+
+    void incr();
 }
