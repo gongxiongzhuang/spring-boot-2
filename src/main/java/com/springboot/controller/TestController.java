@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 
 /**
@@ -100,13 +102,12 @@ public class TestController extends BaseController {
         return new ResponseResult<>(testService.updateUsers());
     }
 
-    @ApiOperation(value = "测试增量")
-    @GetMapping("/incr")
-    public ResponseResult<PageList<User>> incr() {
-        ThreadPoolManager threadPoolManager = ThreadPoolManager.newInstance();
-        threadPoolManager.perpare();
-        for (int i = 0; i < 110; i++) {//testService.incr()
-            threadPoolManager.addExecuteTask(()-> {
+    @ApiOperation(value = "购买商品")
+    @GetMapping("/bugGoods")
+    public ResponseResult<PageList<User>> bugGoods() {
+        ThreadPoolExecutor pool1 = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+        for (int i = 0; i < 2000; i++) {//testService.incr()
+            pool1.execute(()-> {
                 if (redisLock.bugGoods("test", "1")) {
                     logger.info("购买成功！");
                 } else {
@@ -115,6 +116,31 @@ public class TestController extends BaseController {
             });
         }
         return new ResponseResult<>();
+    }
+
+    @ApiOperation(value = "redis 分布式锁")
+    @GetMapping("/lock")
+    public void lock() {
+        ThreadPoolExecutor pool1 = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+        for (int i = 0; i < 1000; i++) {//testService.incr()
+            pool1.execute(()-> {
+                if (redisLock.lock("1")) {
+                    try {
+                        //成功获取锁
+                        logger.info("获取锁成功，继续执行任务" + Thread.currentThread().getName());
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }catch (Exception e) {
+                        logger.error("Exception ", e);
+                    } finally {
+                        redisLock.unlock("1");
+                    }
+                }
+            });
+        }
     }
 
 
